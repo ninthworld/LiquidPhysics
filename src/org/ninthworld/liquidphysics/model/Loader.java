@@ -1,8 +1,8 @@
 package org.ninthworld.liquidphysics.model;
 
-import de.matthiasmann.twl.utils.PNGDecoder;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
+import org.newdawn.slick.opengl.PNGDecoder;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.ninthworld.liquidphysics.helper.TextureData;
@@ -59,7 +59,7 @@ public class Loader {
             width = decoder.getWidth();
             height = decoder.getHeight();
             buffer = ByteBuffer.allocateDirect(4 * width * height);
-            decoder.decode(buffer, width * 4, PNGDecoder.Format.RGBA);
+            decoder.decode(buffer, width * 4, PNGDecoder.RGBA);
             buffer.flip();
             file.close();
         } catch (Exception e) {

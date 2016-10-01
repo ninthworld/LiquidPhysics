@@ -1,5 +1,6 @@
 package org.ninthworld.liquidphysics.entities;
 
+import org.ninthworld.liquidphysics.engine.Main;
 import org.ninthworld.liquidphysics.model.Loader;
 import org.ninthworld.liquidphysics.model.RawModel;
 
@@ -13,7 +14,7 @@ public class LiquidEntity extends ModelEntity {
     }
 
     public static RawModel createLiquidModel(Loader loader){
-        float radius = 8f;
+        float radius = Main.PARTICLE_RADIUS;
         int verts = 8;
 
         float[] vertices = new float[verts * 2];
