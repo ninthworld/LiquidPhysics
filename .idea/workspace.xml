@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="LiquidPhysics:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="af1ab284-0c4a-40ae-ae45-ccbbf9ba7e3e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/liquid/liquid.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/liquid/liquid.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/LiquidEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/DisplayManager.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/DisplayManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/CameraEntity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/CameraEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/Entity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/Entity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/ModelEntity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/ModelEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/GeometryRenderer.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/GeometryRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/LiquidRenderer.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/LiquidRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/constrain/constrainfx.frag" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/constrain/constrainfx.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/main/mainfx.frag" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/main/mainfx.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" afterPath="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" afterPath="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" />
     </list>
     <ignored path="LiquidPhysics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -499,6 +481,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -660,13 +656,17 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/slick.jar!/" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/MEGA/IdeaProjects/LiquidPhysics/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="liquidphysics" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -966,8 +966,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -982,7 +982,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1828125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1828125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1250,8 +1250,8 @@
         <state relative-caret-position="399">
           <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
           <folding>
-            <element signature="e#1705#1706#0" expanded="true" />
-            <element signature="e#1773#1774#0" expanded="true" />
+            <element signature="e#1705#1706#0" expanded="false" />
+            <element signature="e#1773#1774#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1261,8 +1261,8 @@
         <state relative-caret-position="153">
           <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding>
-            <element signature="e#164#165#0" expanded="true" />
-            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#164#165#0" expanded="false" />
+            <element signature="e#187#188#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1465,10 +1465,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>LiquidPhysics:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
