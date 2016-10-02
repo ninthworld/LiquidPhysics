@@ -21,6 +21,7 @@ public class DisplayManager {
     private static final int        FPS_CAP = 60;
     private static final boolean    VSYNC   = true;
     private static final String     TITLE   = "LiquidPhysics";
+    private static StringBuilder titleAppend;
 
     public static void createDisplay(){
         try {
@@ -35,21 +36,33 @@ public class DisplayManager {
         }
 
         GL11.glViewport(0, 0, WIDTH, HEIGHT);
+
+        titleAppend = new StringBuilder();
     }
 
     private static long fpsTime = System.nanoTime();
     private static int fpsCount = 0;
+    private static String fpsString = "";
     public static void showFPS(){
         if(System.nanoTime() - fpsTime > 1000000000L){
-            Display.setTitle(TITLE + " - " + fpsCount + " FPS");
+            fpsString = " - " + fpsCount + " FPS";
             fpsTime = System.nanoTime();
             fpsCount = 0;
         }else{
             fpsCount++;
         }
+
+        titleAppend.append(fpsString);
+    }
+
+    public static void showString(String str){
+        titleAppend.append(" - " + str);
     }
 
     public static void updateDisplay(){
+        Display.setTitle(TITLE + "" + titleAppend);
+        titleAppend = new StringBuilder();
+
         Display.sync(FPS_CAP);
         Display.update();
     }

@@ -9,7 +9,7 @@ uniform sampler2D colorTexture;
 void main() {
     vec3 color = texture(colorTexture, textureCoords).rgb;
 
-    if(color.r > 0.1){
+    if(color.r > 0.05){
         out_Color = vec4(1);
     }else{
         out_Color = vec4(0);

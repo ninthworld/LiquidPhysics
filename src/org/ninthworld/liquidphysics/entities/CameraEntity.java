@@ -8,4 +8,9 @@ public class CameraEntity extends Entity {
     public CameraEntity(){
         super();
     }
+
+    public void increasePosition(float x, float y){
+        this.position.x += x;
+        this.position.y += y;
+    }
 }

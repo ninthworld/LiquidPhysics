@@ -2,49 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af1ab284-0c4a-40ae-ae45-ccbbf9ba7e3e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jbox2d.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_jbox2d_jbox2d_library_2_2_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/artifacts/jbox2d.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/libraries/Maven__junit_junit_4_8_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jbox2d-master/jbox2d-library/jbox2d-library.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/fx/blur/blurfx.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/fx/fx.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/BlurFXRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/ConstrainFXRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/Fbo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/ImageRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/MainFXRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/PostProcessing.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/ConstrainFXShader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/GeometryShader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/shader/LiquidShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/liquid/liquid.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/liquid/liquid.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fluid/FluidEngine.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fluid/Particle.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/liquid/liquid.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shaders/liquid/liquid.vert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/LiquidEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/DisplayManager.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/DisplayManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/LiquidEntity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/LiquidEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/model/Loader.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/model/Loader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/CameraEntity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/CameraEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/Entity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/Entity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/ModelEntity.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/entities/ModelEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/GeometryRenderer.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/GeometryRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/LiquidRenderer.class" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/org/ninthworld/liquidphysics/renderer/LiquidRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LiquidPhysics.iml" afterPath="$PROJECT_DIR$/LiquidPhysics.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/constrain/constrainfx.frag" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/constrain/constrainfx.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/main/mainfx.frag" afterPath="$PROJECT_DIR$/out/production/LiquidPhysics/shaders/fx/main/mainfx.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" afterPath="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" afterPath="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/shaders/liquid/liquid.frag" afterPath="$PROJECT_DIR$/res/shaders/geometry/geometry.frag" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/shaders/liquid/liquid.vert" afterPath="$PROJECT_DIR$/res/shaders/geometry/geometry.vert" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/BlurFXShader.java" />
     </list>
     <ignored path="LiquidPhysics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,6 +37,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/LiquidPhysics$Main.coverage" NAME="Main Coverage Results" MODIFIED="1475369667553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -65,11 +49,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="185" column="3" selection-start-line="185" selection-start-column="3" selection-end-line="185" selection-end-column="3" />
+            <state relative-caret-position="448">
+              <caret line="112" column="54" selection-start-line="112" selection-start-column="54" selection-end-line="112" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,74 +61,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="geometry.frag" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/shaders/geometry/geometry.frag">
+      <file leaf-file-name="ModelEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="187">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#569#570#0" expanded="true" />
+                <element signature="e#596#597#0" expanded="true" />
+                <element signature="e#634#635#0" expanded="true" />
+                <element signature="e#666#667#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="liquid.frag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/liquid/liquid.frag">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeometryShader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/GeometryShader.java">
+      <file leaf-file-name="liquid.vert" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/liquid/liquid.vert">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-              <folding>
-                <element signature="e#1705#1706#0" expanded="true" />
-                <element signature="e#1773#1774#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFXShader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#582#583#0" expanded="true" />
-                <element signature="e#631#632#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainfx.frag" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mainfx.frag" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+            <state relative-caret-position="1073">
+              <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeometryRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="33" column="98" selection-start-line="33" selection-start-column="98" selection-end-line="33" selection-end-column="98" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlurFXShader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/BlurFXShader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="30" column="51" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="51" />
-              <folding>
-                <element signature="e#750#751#0" expanded="true" />
-                <element signature="e#800#801#0" expanded="true" />
-                <element signature="e#1403#1404#0" expanded="true" />
-                <element signature="e#1457#1458#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,21 +110,11 @@
       <file leaf-file-name="LiquidRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+            <state relative-caret-position="537">
+              <caret line="82" column="141" selection-start-line="82" selection-start-column="141" selection-end-line="82" selection-end-column="141" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="blurfx.frag" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/shaders/fx/blur/blurfx.frag">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="100" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -176,8 +124,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="GLSL Shader" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -196,20 +144,13 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/loader/Loader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/RawModel.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/TextureData.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/MatrixHelper.java" />
-        <option value="$PROJECT_DIR$/res/shaders/liquid/liquid.vert" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fluid/Particle.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/Vec2Helper.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/VecHelper.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fluid/FluidEngine.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java" />
-        <option value="$PROJECT_DIR$/res/shaders/liquid/liquid.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/Fbo.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/ImageRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/BlurFXShader.java" />
@@ -217,17 +158,24 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/BlurFXRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/ConstainFXShader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/ConstrainFXRenderer.java" />
-        <option value="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/PostProcessing.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fbo/MainFXRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/Geometry.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/GeometryShader.java" />
         <option value="$PROJECT_DIR$/res/shaders/geometry/geometry.frag" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java" />
+        <option value="$PROJECT_DIR$/res/shaders/liquid/liquid.vert" />
+        <option value="$PROJECT_DIR$/res/shaders/liquid/liquid.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java" />
+        <option value="$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java" />
+        <option value="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java" />
-        <option value="$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag" />
       </list>
     </option>
   </component>
@@ -459,7 +407,125 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="liquidphysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="jbox2d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbox2d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="particle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbox2d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dynamics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LiquidPhysics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="liquid" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -607,15 +673,16 @@
       <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\res\shaders\fx\blur" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\res\shaders\fx\constrain" />
       <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\res\shaders\fx" />
+      <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\res\shaders\geometry" />
+      <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\res\shaders\fx\constrain" />
       <recent name="D:\MEGA\IdeaProjects\LiquidPhysics\src\org\ninthworld\liquidphysics" />
       <recent name="C:\Users\NinthWorld\IdeaProjects\LiquidPhysics" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.ninthworld.liquidphysics.shader" />
       <recent name="org.ninthworld.liquidphysics.renderer" />
       <recent name="org.ninthworld.liquidphysics.fbo" />
-      <recent name="org.ninthworld.liquidphysics.shader" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.ninthworld.liquidphysics.helper" />
@@ -899,7 +966,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -909,8 +976,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16173361" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15961945" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.075520836" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -919,7 +987,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20824525" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -941,7 +1009,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -950,84 +1018,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/MatrixHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/geometry.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/geometry.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="113" column="55" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="48" column="52" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="98" selection-start-line="19" selection-start-column="98" selection-end-line="19" selection-end-column="98" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/TextureData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1095,36 +1085,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/VecHelper.java" />
-    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/particle/ParticleSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/helper/Vec2Helper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1141,16 +1102,6 @@
         <state relative-caret-position="272">
           <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="66" column="28" selection-start-line="57" selection-start-column="54" selection-end-line="66" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1172,36 +1123,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/fluid/FluidEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
           <caret line="318" column="14" selection-start-line="318" selection-start-column="14" selection-end-line="318" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/fx/fx.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1230,28 +1155,9 @@
         <state relative-caret-position="153">
           <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding>
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="false" />
+            <element signature="e#867#868#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/ConstrainFXShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#625#626#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1268,7 +1174,7 @@
         <state relative-caret-position="357">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1286,7 +1192,7 @@
         <state relative-caret-position="527">
           <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1304,10 +1210,9 @@
         <state relative-caret-position="382">
           <caret line="30" column="51" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="51" />
           <folding>
-            <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#800#801#0" expanded="true" />
-            <element signature="e#1403#1404#0" expanded="true" />
-            <element signature="e#1457#1458#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="false" />
+            <element signature="e#800#801#0" expanded="false" />
+            <element signature="e#1403#1404#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1316,6 +1221,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#582#583#0" expanded="false" />
+            <element signature="e#631#632#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/geometry.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1331,59 +1256,206 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/CameraEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding>
+            <element signature="e#164#165#0" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/ConstrainFXShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="35" />
+          <folding>
+            <element signature="e#625#626#0" expanded="false" />
+            <element signature="e#700#701#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/model/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/DisplayManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/LiquidShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="35" column="72" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="72" />
+          <folding>
+            <element signature="e#1710#1711#0" expanded="false" />
+            <element signature="e#1770#1771#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/fx/fx.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/particle/LavaParticle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/particle/WaterParticle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/GeometryRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="33" column="98" selection-start-line="33" selection-start-column="98" selection-end-line="33" selection-end-column="98" />
+        <state relative-caret-position="323">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/liquid/liquid.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/liquid/liquid.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/LiquidEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/dynamics/TimeStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/fx/constrain/constrainfx.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/entities/ModelEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1073">
+          <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/particle/ParticleSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/particle/ParticleGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/particle/ParticleDef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jbox2d/dynamics/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4385">
+          <caret line="1978" column="43" selection-start-line="1978" selection-start-column="28" selection-end-line="1978" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/renderer/LiquidRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+        <state relative-caret-position="537">
+          <caret line="82" column="141" selection-start-line="82" selection-start-column="141" selection-end-line="82" selection-end-column="141" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/shader/MainFXShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#582#583#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/liquidphysics/engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="185" column="3" selection-start-line="185" selection-start-column="3" selection-end-line="185" selection-end-column="3" />
+        <state relative-caret-position="448">
+          <caret line="112" column="54" selection-start-line="112" selection-start-column="54" selection-end-line="112" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/geometry.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/fx/main/mainfx.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -1,17 +1,20 @@
 package org.ninthworld.liquidphysics.engine;
 
+import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Color3f;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-import org.jbox2d.particle.ParticleDef;
+import org.jbox2d.particle.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
 import org.ninthworld.liquidphysics.entities.CameraEntity;
-import org.ninthworld.liquidphysics.entities.LiquidEntity;
+import org.ninthworld.liquidphysics.entities.ModelEntity;
 import org.ninthworld.liquidphysics.fbo.Fbo;
 import org.ninthworld.liquidphysics.fbo.PostProcessing;
 import org.ninthworld.liquidphysics.helper.MatrixHelper;
@@ -20,6 +23,7 @@ import org.ninthworld.liquidphysics.model.RawModel;
 import org.ninthworld.liquidphysics.renderer.GeometryRenderer;
 import org.ninthworld.liquidphysics.renderer.LiquidRenderer;
 
+import java.security.Key;
 import java.util.*;
 
 /**
@@ -27,140 +31,89 @@ import java.util.*;
  */
 public class Main {
 
+    private static CameraEntity camera;
+
     private static Loader loader;
     private static LiquidRenderer liquidRenderer;
     private static GeometryRenderer geometryRenderer;
-
-    private static Vec2[] geometry;
-
-    private static CameraEntity camera;
-
-    public static final int MAX_PARTICLES = 1000;
-    public static final float PARTICLE_RADIUS = 4;
-    private static World world;
-
-    private static Set<Body> bodies;
-    private static RawModel liquidModel;
-    private static RawModel boxModel;
-
     private static Map<String, Fbo> fbos;
 
-    private static void initialize(){
-        DisplayManager.createDisplay();
+    public static final float PARTICLE_RADIUS = 2;
+    private static final int WORLD_WIDTH = 1280;
+    private static final int WORLD_HEIGHT = 640;
 
+    private static World world;
+
+    private static RawModel liquidModel;
+    private static List<ModelEntity> polygons;
+
+    private static List<Body> obsidians;
+
+    private static final ParticleColor WATER_COLOR = new ParticleColor(Color3f.BLUE);
+    private static final ParticleColor LAVA_COLOR = new ParticleColor(Color3f.RED);
+    private static final ParticleColor STEAM_COLOR = new ParticleColor(Color3f.WHITE);
+
+    private static ParticleSystem particleSystem;
+    private static ParticleSystem invParticleSystem;
+
+    private static void initialize(){
         loader = new Loader();
+        DisplayManager.createDisplay();
+        Matrix4f projectionMatrix = MatrixHelper.createProjectionMatrix();
+        liquidRenderer = new LiquidRenderer(loader, projectionMatrix);
+        geometryRenderer = new GeometryRenderer(projectionMatrix);
         PostProcessing.init(loader);
+
         camera = new CameraEntity();
 
-        Matrix4f projectionMatrix = MatrixHelper.createProjectionMatrix();
-        liquidRenderer = new LiquidRenderer(projectionMatrix);
-        geometryRenderer = new GeometryRenderer(projectionMatrix);
-
-        liquidModel = LiquidEntity.createLiquidModel(loader);
-
-        float size = 32f;
-        float[] vertices = new float[]{
-                size, size,
-                size, -size,
-                -size, -size
-        };
-        float[] colors = new float[]{
-                1f, 0f, 1f,
-                1f, 0f, 1f,
-                1f, 0f, 1f
-        };
-        int[] indices = new int[]{
-                0, 1, 2
-        };
-
-        boxModel = loader.loadToVao(vertices, colors, indices);
-
-        geometry = new Vec2[]{
-                new Vec2(Display.getWidth()/1.1f, Display.getHeight()/1.1f)
-        };
+        liquidModel = createPolygonModel(new Vec2[]{new Vec2(-16, -16), new Vec2(16, -16), new Vec2(16, 16), new Vec2(-16, 16)}, new Vector3f(1, 1, 1));
 
         fbos = new HashMap<>();
         fbos.put("geometryColor", new Fbo(Display.getWidth(), Display.getHeight()));
         fbos.put("geometryMask", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("particles", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("blurX1", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("blurX2", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("blurY1", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("blurY2", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("particlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("waterParticles", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("waterParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("lavaParticles", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("lavaParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("obsidianColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("obsidianMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("steamParticles", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("steamParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
 
         world = new World(new Vec2(0, 9.8f * 10f));
-        world.setParticleRadius(PARTICLE_RADIUS);
-        world.setParticleDamping(1f);
-        world.setParticleDensity(1f);
-        world.setParticleGravityScale(1f);
-        world.setParticleMaxCount(2000);
 
-//        for(int i=0; i<MAX_PARTICLES/8; i++) {
-//            ParticleDef particleDef = new ParticleDef();
-//            particleDef.position.set(Display.getWidth()/2f + i*0.4f, Display.getHeight()/2f);
-//            world.createParticle(particleDef);
-//        }
+        particleSystem = new ParticleSystem(world);
+        particleSystem.setParticleRadius(PARTICLE_RADIUS);
+        particleSystem.setParticleDamping(1f);
+        particleSystem.setParticleDensity(1f);
+        particleSystem.setParticleGravityScale(2f);
+        particleSystem.setParticleMaxCount(20000);
 
-        bodies = new HashSet<>();
+        invParticleSystem = new ParticleSystem(world);
+        invParticleSystem.setParticleRadius(1f);
+        invParticleSystem.setParticleDamping(1f);
+        invParticleSystem.setParticleDensity(1f);
+        invParticleSystem.setParticleGravityScale(-1f);
+        invParticleSystem.setParticleMaxCount(5000);
 
-        BodyDef groundDef = new BodyDef();
-        groundDef.position.set(0, Display.getHeight());
-        groundDef.type = BodyType.STATIC;
-        PolygonShape groundShape = new PolygonShape();
-        groundShape.setAsBox(Display.getWidth(), 0);
-        Body ground = world.createBody(groundDef);
-        FixtureDef groundFixture = new FixtureDef();
-        groundFixture.density = 1;
-        groundFixture.shape = groundShape;
-        ground.createFixture(groundFixture);
-        bodies.add(ground);
+        obsidians = new ArrayList<>();
 
-        BodyDef leftWallDef = new BodyDef();
-        leftWallDef.position.set(0, Display.getHeight()/2f);
-        leftWallDef.type = BodyType.STATIC;
-        PolygonShape leftWallShape = new PolygonShape();
-        leftWallShape.setAsBox(0, Display.getHeight());
-        Body leftWall = world.createBody(leftWallDef);
-        FixtureDef leftWallFixture = new FixtureDef();
-        leftWallFixture.density = 1;
-        leftWallFixture.shape = leftWallShape;
-        leftWall.createFixture(leftWallFixture);
-        bodies.add(leftWall);
+        polygons = new ArrayList<>();
+        // Bottom
+        polygons.add(createPolygon(WORLD_WIDTH/2, WORLD_HEIGHT, new Vec2[]{new Vec2(-WORLD_WIDTH/2, -8), new Vec2(WORLD_WIDTH/2, -8), new Vec2(WORLD_WIDTH/2, 8), new Vec2(-WORLD_WIDTH/2, 8)}, new Vector3f(0.8f, 0.8f, 0.8f)));
+        // Top
+        polygons.add(createPolygon(WORLD_WIDTH/2, 0, new Vec2[]{new Vec2(-WORLD_WIDTH/2, -8), new Vec2(WORLD_WIDTH/2, -8), new Vec2(WORLD_WIDTH/2, 8), new Vec2(-WORLD_WIDTH/2, 8)}, new Vector3f(0.8f, 0.8f, 0.8f)));
+        // Left
+        polygons.add(createPolygon(0, WORLD_HEIGHT/2, new Vec2[]{new Vec2(-8, -WORLD_HEIGHT/2), new Vec2(8, -WORLD_HEIGHT/2), new Vec2(8, WORLD_HEIGHT/2), new Vec2(-8, WORLD_HEIGHT/2)}, new Vector3f(0.8f, 0.8f, 0.8f)));
+        // Right
+        polygons.add(createPolygon(WORLD_WIDTH, WORLD_HEIGHT/2, new Vec2[]{new Vec2(-8, -WORLD_HEIGHT/2), new Vec2(8, -WORLD_HEIGHT/2), new Vec2(8, WORLD_HEIGHT/2), new Vec2(-8, WORLD_HEIGHT/2)}, new Vector3f(0.8f, 0.8f, 0.8f)));
 
-        BodyDef rightWallDef = new BodyDef();
-        rightWallDef.position.set(Display.getWidth(), Display.getHeight()/2f);
-        rightWallDef.type = BodyType.STATIC;
-        PolygonShape rightWallShape = new PolygonShape();
-        rightWallShape.setAsBox(0, Display.getHeight());
-        Body rightWall = world.createBody(rightWallDef);
-        FixtureDef rightWallFixture = new FixtureDef();
-        rightWallFixture.density = 1;
-        rightWallFixture.shape = rightWallShape;
-        rightWall.createFixture(rightWallFixture);
-        bodies.add(rightWall);
+        polygons.add(createPolygon(WORLD_WIDTH/4, WORLD_HEIGHT/4, new Vec2[]{new Vec2(-100, -128), new Vec2(-128, -100), new Vec2(100, 128), new Vec2(128, 100)}, new Vector3f(0.8f, 0.8f, 0.8f)));
 
-        BodyDef boxDef = new BodyDef();
-        boxDef.position.set(geometry[0]);
-        boxDef.type = BodyType.STATIC;
-        PolygonShape boxShape = new PolygonShape();
-
-        Vec2[] verts = new Vec2[vertices.length/2];
-        for(int i=0; i<verts.length; i++){
-            verts[i] = new Vec2(vertices[i*2], -vertices[i*2+1]);
-        }
-        boxShape.set(verts, verts.length);
-
-        Body box = world.createBody(boxDef);
-        FixtureDef boxFixture = new FixtureDef();
-        boxFixture.density = 1;
-        boxFixture.shape = boxShape;
-        box.createFixture(boxFixture);
-        bodies.add(box);
+        polygons.add(createPolygon(WORLD_WIDTH/4 + 200, WORLD_HEIGHT/4, new Vec2[]{new Vec2(100, -128), new Vec2(-128, 100), new Vec2(-100, 128), new Vec2(128, -100)}, new Vector3f(0.8f, 0.8f, 0.8f)));
 
         update();
     }
-
     private static void cleanUp(){
         liquidRenderer.cleanUp();
 
@@ -173,65 +126,221 @@ public class Main {
         DisplayManager.closeDisplay();
     }
 
-    private static int particleCount = 0;
+    private static TimeStep timeStep = new TimeStep();
     private static void update(){
+        timeStep.dt = 1/60f;
+        timeStep.inv_dt = 60f;
+        timeStep.positionIterations = 8;
+        timeStep.velocityIterations = 3;
         while(!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-            world.step(1/60f, 8, 3);
+            world.step(timeStep.dt, timeStep.positionIterations, timeStep.velocityIterations);
+            particleSystem.solve(timeStep);
+            invParticleSystem.solve(timeStep);
 
-            if(Mouse.isButtonDown(0) && particleCount < MAX_PARTICLES){
-                ParticleDef particleDef = new ParticleDef();
-                particleDef.position.set(Mouse.getX(), Display.getHeight() - Mouse.getY());
-                world.createParticle(particleDef);
-                particleCount++;
+            if(Keyboard.isKeyDown(Keyboard.KEY_W) && camera.getPosition().y > 0){
+                camera.increasePosition(0, -8);
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_S) && camera.getPosition().y < WORLD_HEIGHT - Display.getHeight()){
+                camera.increasePosition(0, 8);
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_A) && camera.getPosition().x > 0){
+                camera.increasePosition(-8, 0);
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_D) && camera.getPosition().x < WORLD_WIDTH - Display.getWidth()){
+                camera.increasePosition(8, 0);
+            }
+
+            for(int i=0; i<invParticleSystem.getParticleCount(); i++){
+                ParticleColor color = invParticleSystem.getParticleColorBuffer()[i];
+                if(color.a > 0x7e){
+                    invParticleSystem.destroyParticle(i, false);
+                }else{
+                    color.a++;
+                }
+            }
+
+            for(int i=0; i<particleSystem.m_contactCount; i++){
+                int particleA = particleSystem.m_contactBuffer[i].indexA;
+                int particleB = particleSystem.m_contactBuffer[i].indexB;
+
+                ParticleColor particleColorA = particleSystem.getParticleColorBuffer()[particleA];
+                ParticleColor particleColorB = particleSystem.getParticleColorBuffer()[particleB];
+
+                if(particleColorA.r == WATER_COLOR.r && particleColorA.g == WATER_COLOR.g && particleColorA.b == WATER_COLOR.b && particleColorA.a == WATER_COLOR.a &&
+                        particleColorB.r == LAVA_COLOR.r && particleColorB.g == LAVA_COLOR.g && particleColorB.b == LAVA_COLOR.b && particleColorB.a == LAVA_COLOR.a) {
+
+                    obsidians.add(createObsidian(particleSystem.getParticlePositionBuffer()[particleB].x, particleSystem.getParticlePositionBuffer()[particleB].y));
+
+                    ParticleDef particleDef = new ParticleDef();
+                    particleDef.position.set(particleSystem.getParticlePositionBuffer()[particleA].x, particleSystem.getParticlePositionBuffer()[particleA].y);
+                    particleDef.color = STEAM_COLOR;
+                    particleDef.color.a = 0x0;
+                    invParticleSystem.createParticle(particleDef);
+
+                    particleSystem.destroyParticle(particleA, false);
+                    particleSystem.destroyParticle(particleB, false);
+                }
+            }
+
+            if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+                float x = Mouse.getX() + camera.getPosition().x;
+                float y = Display.getHeight() - Mouse.getY() + camera.getPosition().y;
+
+                for(int i=0; i<obsidians.size(); i++){
+                    Body body = obsidians.get(i);
+                    float dist = (float) Math.sqrt(Math.pow(x - body.getPosition().x, 2) + Math.pow(y - body.getPosition().y, 2));
+                    if(dist < 32f){
+                        obsidians.remove(i);
+                        world.destroyBody(body);
+                    }
+                }
+            }
+
+            if(Mouse.isButtonDown(0) && particleSystem.getParticleCount() < particleSystem.getParticleMaxCount()){
+                for(int r=0; r<3; r++){
+                    for(int i=0; i<=r*Math.PI*2; i++){
+                        ParticleDef particleDef = new ParticleDef();
+                        particleDef.position.set(Mouse.getX() + camera.getPosition().x + (float) Math.cos(i/Math.PI*2)*((float) r*4), Display.getHeight() - Mouse.getY() + camera.getPosition().y + (float) Math.sin(i/Math.PI*2)*((float) r*4));
+                        particleDef.color = WATER_COLOR;
+                        particleSystem.createParticle(particleDef);
+                    }
+                }
+            }
+            if(Mouse.isButtonDown(1) && particleSystem.getParticleCount() < particleSystem.getParticleMaxCount()){
+                for(int r=0; r<3; r++){
+                    for(int i=0; i<=r*Math.PI*2; i++){
+                        ParticleDef particleDef = new ParticleDef();
+                        particleDef.position.set(Mouse.getX() + camera.getPosition().x + (float) Math.cos(i/Math.PI*2)*((float) r*4), Display.getHeight() - Mouse.getY() + camera.getPosition().y + (float) Math.sin(i/Math.PI*2)*((float) r*4));
+                        particleDef.color = LAVA_COLOR;
+                        particleSystem.createParticle(particleDef);
+                    }
+                }
             }
 
             fbos.get("geometryMask").bindFrameBuffer();
-            geometryRenderer.render(boxModel, geometry, camera, true);
+            geometryRenderer.render(polygons, camera, true);
             fbos.get("geometryMask").unbindFrameBuffer();
 
             fbos.get("geometryColor").bindFrameBuffer();
-            geometryRenderer.render(boxModel, geometry, camera, false);
+            geometryRenderer.render(polygons, camera, false);
             fbos.get("geometryColor").unbindFrameBuffer();
 
-            fbos.get("particles").bindFrameBuffer();
-            liquidRenderer.render(liquidModel, world.getParticlePositionBuffer(), camera, true);
-            fbos.get("particles").unbindFrameBuffer();
+            fbos.get("waterParticles").bindFrameBuffer();
+            liquidRenderer.render(liquidModel, particleSystem.getParticlePositionBuffer(), particleSystem.getParticleCount(), particleSystem.getParticleColorBuffer(), WATER_COLOR, camera);
+            fbos.get("waterParticles").unbindFrameBuffer();
 
-            fbos.get("blurX1").bindFrameBuffer();
-            PostProcessing.doPostProcessingBlur(fbos.get("particles").getColorTexture(), 2, Display.getWidth(), new Vector2f(1, 0));
-            fbos.get("blurX1").unbindFrameBuffer();
+            fbos.get("waterParticlesMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("waterParticles").getColorTexture());
+            fbos.get("waterParticlesMask").unbindFrameBuffer();
 
-            fbos.get("blurX2").bindFrameBuffer();
-            PostProcessing.doPostProcessingBlur(fbos.get("blurX1").getColorTexture(), 2, Display.getWidth(), new Vector2f(1, 0));
-            fbos.get("blurX2").unbindFrameBuffer();
+            fbos.get("lavaParticles").bindFrameBuffer();
+            liquidRenderer.render(liquidModel, particleSystem.getParticlePositionBuffer(), particleSystem.getParticleCount(), particleSystem.getParticleColorBuffer(), LAVA_COLOR, camera);
+            fbos.get("lavaParticles").unbindFrameBuffer();
 
-            fbos.get("blurY1").bindFrameBuffer();
-            PostProcessing.doPostProcessingBlur(fbos.get("blurX2").getColorTexture(), 2, Display.getHeight(), new Vector2f(0, 1));
-            fbos.get("blurY1").unbindFrameBuffer();
+            fbos.get("lavaParticlesMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("lavaParticles").getColorTexture());
+            fbos.get("lavaParticlesMask").unbindFrameBuffer();
 
-            fbos.get("blurY2").bindFrameBuffer();
-            PostProcessing.doPostProcessingBlur(fbos.get("blurY1").getColorTexture(), 2, Display.getHeight(), new Vector2f(0, 1));
-            fbos.get("blurY2").unbindFrameBuffer();
+            fbos.get("steamParticles").bindFrameBuffer();
+            liquidRenderer.render(liquidModel, invParticleSystem.getParticlePositionBuffer(), invParticleSystem.getParticleCount(), invParticleSystem.getParticleColorBuffer(), STEAM_COLOR, camera);
+            fbos.get("steamParticles").unbindFrameBuffer();
 
-            fbos.get("particlesMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("blurY2").getColorTexture());
-            fbos.get("particlesMask").unbindFrameBuffer();
+            fbos.get("steamParticlesMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("steamParticles").getColorTexture());
+            fbos.get("steamParticlesMask").unbindFrameBuffer();
+
+            fbos.get("obsidianColor").bindFrameBuffer();
+            liquidRenderer.render(liquidModel, obsidians, camera);
+            fbos.get("obsidianColor").unbindFrameBuffer();
+
+            fbos.get("obsidianMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("obsidianColor").getColorTexture());
+            fbos.get("obsidianMask").unbindFrameBuffer();
 
             PostProcessing.doPostProcessingMain(
                     new int[]{
                             fbos.get("geometryColor").getColorTexture(),
-                            fbos.get("particlesMask").getColorTexture()
+                            fbos.get("waterParticlesMask").getColorTexture(),
+                            fbos.get("lavaParticlesMask").getColorTexture(),
+                            fbos.get("steamParticlesMask").getColorTexture(),
+                            fbos.get("obsidianMask").getColorTexture()
                     }, new int[]{
                             fbos.get("geometryMask").getColorTexture(),
-                            fbos.get("particlesMask").getColorTexture()
+                            fbos.get("waterParticlesMask").getColorTexture(),
+                            fbos.get("lavaParticlesMask").getColorTexture(),
+                            fbos.get("steamParticlesMask").getColorTexture(),
+                            fbos.get("obsidianMask").getColorTexture()
                     }
             );
 
             DisplayManager.showFPS();
+            DisplayManager.showString(
+                    "Particles: " + (particleSystem.getParticleCount() + invParticleSystem.getParticleCount())
+                            + "/" + (particleSystem.getParticleMaxCount() + invParticleSystem.getParticleMaxCount())
+                    );
             DisplayManager.updateDisplay();
         }
 
         cleanUp();
+    }
+
+    private static Body createObsidian(float x, float y){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(x, y);
+        bodyDef.type = BodyType.STATIC;
+
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(PARTICLE_RADIUS*3);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = 1;
+        fixtureDef.shape = circleShape;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef);
+
+        return body;
+    }
+
+    private static ModelEntity createPolygon(float x, float y, Vec2[] verts, Vector3f color){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(x, y);
+        bodyDef.type = BodyType.STATIC;
+
+        PolygonShape polygonShape = new PolygonShape();
+        polygonShape.set(verts, verts.length);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = 1;
+        fixtureDef.shape = polygonShape;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef);
+
+        RawModel polygonModel = createPolygonModel(verts, color);
+        ModelEntity polygonEntity = new ModelEntity();
+        polygonEntity.setRawModel(polygonModel);
+        polygonEntity.setPosition(new Vector2f(x, y));
+        polygonEntity.setBody(body);
+
+        return polygonEntity;
+    }
+
+    private static RawModel createPolygonModel(Vec2[] verts, Vector3f color){
+        float[] vertices = new float[verts.length * 2];
+        float[] colors = new float[verts.length * 3];
+        int[] indices = new int[verts.length];
+        for(int i=0; i<verts.length; i++){
+            vertices[i*2] = verts[i].x;
+            vertices[i*2 + 1] = -verts[i].y;
+            colors[i*3] = color.x;
+            colors[i*3 + 1] = color.y;
+            colors[i*3 + 2] = color.z;
+            indices[i] = i;
+        }
+
+        RawModel polygonModel = loader.loadToVao(vertices, colors, indices);
+        return polygonModel;
     }
 
     public static void main(String[] args){

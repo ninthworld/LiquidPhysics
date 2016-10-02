@@ -7,9 +7,9 @@ import org.lwjgl.util.vector.Vector2f;
  */
 public class Entity {
 
-    private Vector2f position;
-    private Vector2f scale;
-    private float rotation;
+    protected Vector2f position;
+    protected Vector2f scale;
+    protected float rotation;
 
     public Entity(){
         this.position = new Vector2f();

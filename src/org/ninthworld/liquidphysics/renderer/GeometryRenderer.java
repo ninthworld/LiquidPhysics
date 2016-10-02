@@ -8,9 +8,12 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.ninthworld.liquidphysics.engine.Main;
 import org.ninthworld.liquidphysics.entities.CameraEntity;
+import org.ninthworld.liquidphysics.entities.ModelEntity;
 import org.ninthworld.liquidphysics.helper.MatrixHelper;
 import org.ninthworld.liquidphysics.model.RawModel;
 import org.ninthworld.liquidphysics.shader.GeometryShader;
+
+import java.util.List;
 
 /**
  * Created by NinthWorld on 9/29/2016.
@@ -31,31 +34,28 @@ public class GeometryRenderer {
         shader.cleanUp();
     }
 
-    public void render(RawModel model, Vec2[] entityPositions, CameraEntity camera, boolean isMask){
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    public void render(List<ModelEntity> entities, CameraEntity camera, boolean isMask){
         GL11.glClearColor(0, 0, 0, 1);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
         shader.start();
         shader.loadViewMatrix(camera);
         shader.setIsMask(isMask);
-        renderEntities(model, entityPositions, shader);
+        renderEntities(entities, shader);
         shader.stop();
     }
 
-    private void renderEntities(RawModel model, Vec2[] entityPositions, GeometryShader shader){
-        prepareRawModel(model);
-        if(entityPositions != null){
-            for(int i = 0; i<entityPositions.length; i++){
-                Vec2 particle = entityPositions[i];
-                prepareEntity(particle, shader);
-                GL11.glDrawElements(GL11.GL_TRIANGLE_FAN, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-            }
+    private void renderEntities(List<ModelEntity> entities, GeometryShader shader){
+        for(ModelEntity entity : entities){
+            prepareRawModel(entity.getRawModel());
+            prepareEntity(entity, shader);
+            GL11.glDrawElements(GL11.GL_TRIANGLE_FAN, entity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+            unbindRawModel();
         }
-        unbindRawModel();
     }
 
-    private void prepareEntity(Vec2 pos, GeometryShader shader) {
-        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(new Vector2f(pos.x, pos.y), 0f, new Vector2f(1, 1));
+    private void prepareEntity(ModelEntity entity, GeometryShader shader) {
+        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(entity.getPosition(), entity.getRotation(), entity.getScale());
         shader.loadTransformationMatrix(transformationMatrix);
     }
 

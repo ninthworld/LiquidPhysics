@@ -33,26 +33,41 @@ void main() {
     vec4 boxColor = texture(textures[0], textureCoords).rgba;
     vec4 boxMask = texture(textures[1], textureCoords).rgba;
 
-    vec4 liquidColor = texture(textures[2], textureCoords).rgba;
-    vec4 liquidMask = texture(textures[3], textureCoords).rgba;
+    vec4 waterColor = texture(textures[2], textureCoords).rgba;
+    vec4 waterMask = texture(textures[3], textureCoords).rgba;
 
-//    liquidColor *= vec4(0.1, 0.2, 0.8, 1);
-//    liquidColor = applyBorderColor(liquidColor, textures[3], vec4(0.3, 0.4, 0.8, 1), 1, 0.1);
-    liquidColor *= vec4(0.95, 0.4, 0.1, 1);
-    liquidColor = applyBorderColor(liquidColor, textures[3], vec4(0.95, 0.6, 0.5, 1), 1, 0.1);
+    vec4 lavaColor = texture(textures[4], textureCoords).rgba;
+    vec4 lavaMask = texture(textures[5], textureCoords).rgba;
 
-    vec4 add = vec4(0);
+    vec4 steamColor = texture(textures[6], textureCoords).rgba;
+    vec4 steamMask = texture(textures[7], textureCoords).rgba;
 
-    add += mix(add, boxColor, boxMask.x);
-    add += mix(add, liquidColor, liquidMask.x);
+    vec4 obsidianColor = texture(textures[8], textureCoords).rgba;
+    vec4 obsidianMask = texture(textures[9], textureCoords).rgba;
+
+    waterColor *= vec4(0.1, 0.2, 0.8, 1);
+    waterColor = applyBorderColor(waterColor, textures[3], vec4(1, 1, 1, 0.3), 4, 0.1);
+    waterMask = applyBorderColor(waterMask, textures[3], vec4(1, 1, 1, 1), 4, 0.1);
+
+    lavaColor *= vec4(0.95, 0.4, 0.1, 1);
+    lavaColor = applyBorderColor(lavaColor, textures[5], vec4(1, 1, 1, 0.3), 4, 0.1);
+    lavaMask = applyBorderColor(lavaMask, textures[5], vec4(1, 1, 1, 1), 4, 0.1);
+
+    steamColor *= vec4(0.8, 0.8, 0.8, 1);
+    steamColor = applyBorderColor(steamColor, textures[7], vec4(1, 1, 1, 0.6), 4, 0.1);
+    steamMask = applyBorderColor(steamMask, textures[7], vec4(1, 1, 1, 1), 4, 0.1);
+
+    obsidianColor *= vec4(0.1, 0.1, 0.1, 1);
+    obsidianColor = applyBorderColor(obsidianColor, textures[9], vec4(0.1, 0.1, 0.1, 0.3), 4, 0.1);
+    obsidianMask = applyBorderColor(obsidianMask, textures[9], vec4(1, 1, 1, 1), 4, 0.1);
+
+    vec4 add = vec4(0.2, 0.2, 0.2, 1);
+
+    add = mix(add, boxColor, boxMask.x);
+    add = mix(add, waterColor, waterMask.x * 0.8);
+    add = mix(add, lavaColor, lavaMask.x * 0.8);
+    add = mix(add, steamColor, steamMask.x * 0.2);
+    add = mix(add, obsidianColor, obsidianMask.x);
 
     out_Color = add;
-
-//    vec3 add = vec3(0);
-//
-//    for(int i=0; i<numColor; i++){
-//        add += mix(add, texture(textures[i*2], textureCoords).rgb, texture(textures[i*2+1], textureCoords).x);
-//    }
-//
-//    out_Color = vec4(add, 1);
 }
