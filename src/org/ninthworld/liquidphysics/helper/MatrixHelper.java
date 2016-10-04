@@ -12,15 +12,24 @@ import org.ninthworld.liquidphysics.entities.CameraEntity;
 public class MatrixHelper {
     public static Matrix4f createTransformationMatrix(Vector2f translation, float rotation, Vector2f scale) {
         Matrix4f matrix = new Matrix4f();
+
         matrix.m00 = 1f;
         matrix.m11 = 1f;
         matrix.m22 = 1f;
         matrix.m33 = 1f;
-        matrix.m03 = 2f*translation.getX()/((float) Display.getWidth());
-        matrix.m13 = -2f*translation.getY()/((float) Display.getHeight());
+        matrix.m03 = translation.getX();
+        matrix.m13 = -translation.getY();
         matrix.m33 = 1f;
 
-        return matrix;
+        Matrix4f rotMatrix = new Matrix4f();
+        rotMatrix.m00 = (float) Math.cos(rotation);
+        rotMatrix.m01 = (float) -Math.sin(rotation);
+        rotMatrix.m10 = (float) Math.sin(rotation);
+        rotMatrix.m11 = (float) Math.cos(rotation);
+        rotMatrix.m22 = 1f;
+        rotMatrix.m33 = 1f;
+
+        return Matrix4f.mul(rotMatrix, matrix, null);
     }
 
     public static Matrix4f createViewMatrix(CameraEntity camera) {

@@ -12,7 +12,7 @@ uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 
 void main(void){
-    gl_Position = vec4(position, 1.0, 1.0) * projectionMatrix * viewMatrix * transformationMatrix;
+    gl_Position = vec4(position, 0.0, 1.0) * transformationMatrix * viewMatrix * projectionMatrix;
 
 	textureCoords = position/32.0 + 0.5;
     fragPosition = position;
