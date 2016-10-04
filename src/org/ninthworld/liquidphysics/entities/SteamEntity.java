@@ -8,6 +8,7 @@ public class SteamEntity extends LiquidEntity {
     public int timer;
 
     public SteamEntity(){
+        super(1f);
         this.timer = 0;
     }
 }

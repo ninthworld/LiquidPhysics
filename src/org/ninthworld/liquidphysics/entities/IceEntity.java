@@ -5,7 +5,9 @@ package org.ninthworld.liquidphysics.entities;
  */
 public class IceEntity extends SolidEntity {
 
-    public IceEntity(int listIndex){
-        super(listIndex);
+    public static float toWaterTemp = 0f;
+
+    public IceEntity(){
+        super(-2f);
     }
 }

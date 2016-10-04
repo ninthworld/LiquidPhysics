@@ -5,9 +5,9 @@ package org.ninthworld.liquidphysics.entities;
  */
 public class SolidEntity {
 
-    public static int listIndex;
+    public float temperature;
 
-    public SolidEntity(int listIndex){
-        this.listIndex = listIndex;
+    public SolidEntity(float temperature){
+        this.temperature = temperature;
     }
 }

@@ -17,14 +17,12 @@ import org.ninthworld.liquidphysics.entities.*;
 import org.ninthworld.liquidphysics.fbo.Fbo;
 import org.ninthworld.liquidphysics.fbo.PostProcessing;
 import org.ninthworld.liquidphysics.helper.MatrixHelper;
-import org.ninthworld.liquidphysics.helper.Vec2Helper;
 import org.ninthworld.liquidphysics.model.Loader;
 import org.ninthworld.liquidphysics.model.RawModel;
 import org.ninthworld.liquidphysics.renderer.GeometryRenderer;
 import org.ninthworld.liquidphysics.renderer.LiquidRenderer;
 import org.ninthworld.liquidphysics.renderer.ShipRenderer;
 
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -37,7 +35,6 @@ public class Main {
     private static Loader loader;
     private static LiquidRenderer liquidRenderer;
     private static GeometryRenderer geometryRenderer;
-    private static ShipRenderer shipRenderer;
     private static Map<String, Fbo> fbos;
 
     public static final float PARTICLE_RADIUS = 2;
@@ -53,10 +50,6 @@ public class Main {
     private static List<Body> obsidians;
     private static List<Body> ices;
 
-    private static final ParticleColor WATER_COLOR = new ParticleColor(Color3f.BLUE);
-    private static final ParticleColor LAVA_COLOR = new ParticleColor(Color3f.RED);
-    private static final ParticleColor STEAM_COLOR = new ParticleColor(Color3f.WHITE);
-
     private static ParticleSystem particleSystem;
     private static ParticleSystem invParticleSystem;
 
@@ -66,7 +59,6 @@ public class Main {
         Matrix4f projectionMatrix = MatrixHelper.createProjectionMatrix();
         liquidRenderer = new LiquidRenderer(loader, projectionMatrix);
         geometryRenderer = new GeometryRenderer(projectionMatrix);
-        shipRenderer = new ShipRenderer(projectionMatrix);
         PostProcessing.init(loader);
 
         camera = new CameraEntity();
@@ -130,6 +122,8 @@ public class Main {
         DisplayManager.closeDisplay();
     }
 
+    private static boolean iceRefresh = true;
+    private static long iceRefreshTime = System.nanoTime();
     private static TimeStep timeStep = new TimeStep();
     private static void update(){
         timeStep.dt = 1/60f;
@@ -140,6 +134,11 @@ public class Main {
             world.step(timeStep.dt, timeStep.positionIterations, timeStep.velocityIterations);
             particleSystem.solve(timeStep);
             invParticleSystem.solve(timeStep);
+
+            if(System.nanoTime() > iceRefreshTime + 1000000L * 10L){
+                iceRefreshTime = System.nanoTime();
+                iceRefresh = true;
+            }
 
             if(Keyboard.isKeyDown(Keyboard.KEY_P)){
                 for(int i=0; i<particleSystem.getParticleCount(); i++){
@@ -179,49 +178,59 @@ public class Main {
             }
 
             for(int i=0; i<particleSystem.m_bodyContactCount; i++){
-                int particle = particleSystem.m_bodyContactBuffer[i].index;
+                int p = particleSystem.m_bodyContactBuffer[i].index;
                 Body body = particleSystem.m_bodyContactBuffer[i].body;
 
-                if(body.getUserData() instanceof IceEntity){
-                    if(particleSystem.getParticleUserDataBuffer()[particle] instanceof WaterEntity) {
-                        particleSystem.destroyParticle(particle, false);
-                        ices.add(createIce(particleSystem.getParticlePositionBuffer()[particle].x, particleSystem.getParticlePositionBuffer()[particle].y, ices.size()));
-                        break;
-                    }
-                }
-            }
-            for(int i=0; i<particleSystem.m_bodyContactCount; i++){
-                int particle = particleSystem.m_bodyContactBuffer[i].index;
-                Body body = particleSystem.m_bodyContactBuffer[i].body;
+                if(body.getUserData() instanceof SolidEntity && particleSystem.getParticleUserDataBuffer()[p] instanceof LiquidEntity){
+                    LiquidEntity liquid = (LiquidEntity) particleSystem.getParticleUserDataBuffer()[p];
+                    SolidEntity solid = (SolidEntity) body.getUserData();
 
-                if(body.getUserData() instanceof IceEntity){
-                    if(particleSystem.getParticleUserDataBuffer()[particle] instanceof LavaEntity){
-                        ParticleDef particleDef = new ParticleDef();
-                        particleDef.position.set(body.getPosition().x, body.getPosition().y);
-                        particleDef.userData = new WaterEntity();
-                        particleSystem.createParticle(particleDef);
-                        ices.remove(body);
-                        world.destroyBody(body);
+                    float avgTemp = (liquid.temperature + solid.temperature)/2f;
+                    liquid.temperature = solid.temperature = avgTemp;
+
+                    if(solid instanceof ObsidianEntity){
+                        if(solid.temperature > ObsidianEntity.toLavaTemp){
+                            createLava(body.getPosition().x, body.getPosition().y, solid.temperature);
+                            world.destroyBody(body);
+                            obsidians.remove(body);
+                        }
+                    }else if(solid instanceof IceEntity){
+                        if(solid.temperature > IceEntity.toWaterTemp){
+                            createWater(body.getPosition().x, body.getPosition().y, solid.temperature);
+                            world.destroyBody(body);
+                            ices.remove(body);
+                        }
                     }
                 }
             }
 
             for(int i=0; i<particleSystem.m_contactCount; i++){
-                int particleA = particleSystem.m_contactBuffer[i].indexA;
-                int particleB = particleSystem.m_contactBuffer[i].indexB;
+                int pA = particleSystem.m_contactBuffer[i].indexA;
+                int pB = particleSystem.m_contactBuffer[i].indexB;
 
-                if(particleSystem.getParticleUserDataBuffer()[particleA] instanceof WaterEntity &&
-                        particleSystem.getParticleUserDataBuffer()[particleB] instanceof LavaEntity) {
+                LiquidEntity pA_UD = (LiquidEntity) particleSystem.getParticleUserDataBuffer()[pA];
+                LiquidEntity pB_UD = (LiquidEntity) particleSystem.getParticleUserDataBuffer()[pB];
 
-                    obsidians.add(createObsidian(particleSystem.getParticlePositionBuffer()[particleB].x, particleSystem.getParticlePositionBuffer()[particleB].y, obsidians.size()));
+                float avgTemp = (pA_UD.temperature + pB_UD.temperature)/2f;
+                pA_UD.temperature = pB_UD.temperature = avgTemp;
+            }
 
-                    ParticleDef particleDef = new ParticleDef();
-                    particleDef.position.set(particleSystem.getParticlePositionBuffer()[particleA].x, particleSystem.getParticlePositionBuffer()[particleA].y);
-                    particleDef.userData = new SteamEntity();
-                    invParticleSystem.createParticle(particleDef);
-
-                    particleSystem.destroyParticle(particleA, false);
-                    particleSystem.destroyParticle(particleB, false);
+            for(int i=0; i<particleSystem.getParticleCount(); i++){
+                LiquidEntity pUD = (LiquidEntity) particleSystem.getParticleUserDataBuffer()[i];
+                Vec2 pos = particleSystem.getParticlePositionBuffer()[i];
+                if(pUD instanceof WaterEntity){
+                    if(pUD.temperature > WaterEntity.toSteamTemp){
+                        createSteam(pos.x, pos.y, pUD.temperature);
+                        particleSystem.destroyParticle(i, false);
+                    }else if(pUD.temperature < WaterEntity.toIceTemp){
+                        ices.add(createIce(pos.x, pos.y, pUD.temperature));
+                        particleSystem.destroyParticle(i, false);
+                    }
+                }else if(pUD instanceof LavaEntity){
+                    if(pUD.temperature < LavaEntity.toObsidianTemp){
+                        obsidians.add(createObsidian(pos.x, pos.y, pUD.temperature));
+                        particleSystem.destroyParticle(i, false);
+                    }
                 }
             }
 
@@ -283,10 +292,11 @@ public class Main {
                 polygons.add(createPolygon(x, y, new Vec2[]{new Vec2(0, 0)}, new Vector3f(1, 1, 1)));
             }
 
-            if(Keyboard.isKeyDown(Keyboard.KEY_3)){
+            if(Keyboard.isKeyDown(Keyboard.KEY_3) && iceRefresh){
                 float x = Mouse.getX() + camera.getPosition().x;
                 float y = (Display.getHeight() - Mouse.getY() + camera.getPosition().y);
-                ices.add(createIce(x, y, ices.size()));
+                ices.add(createIce(x, y, -2f));
+                iceRefresh = false;
             }
 
             fbos.get("geometryMask").bindFrameBuffer();
@@ -365,7 +375,35 @@ public class Main {
 
         cleanUp();
     }
-    private static Body createIce(float x, float y, int listIndex){
+
+    private static int createSteam(float x, float y, float temp){
+        ParticleDef particleDef = new ParticleDef();
+        particleDef.position.set(x, y);
+        SteamEntity entity = new SteamEntity();
+        entity.temperature = temp;
+        particleDef.userData = entity;
+        return invParticleSystem.createParticle(particleDef);
+    }
+
+    private static int createWater(float x, float y, float temp){
+        ParticleDef particleDef = new ParticleDef();
+        particleDef.position.set(x, y);
+        WaterEntity entity = new WaterEntity();
+        entity.temperature = temp;
+        particleDef.userData = entity;
+        return particleSystem.createParticle(particleDef);
+    }
+
+    private static int createLava(float x, float y, float temp){
+        ParticleDef particleDef = new ParticleDef();
+        particleDef.position.set(x, y);
+        LavaEntity entity = new LavaEntity();
+        entity.temperature = temp;
+        particleDef.userData = entity;
+        return particleSystem.createParticle(particleDef);
+    }
+
+    private static Body createIce(float x, float y, float temperature){
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x, y);
         bodyDef.type = BodyType.STATIC;
@@ -379,12 +417,14 @@ public class Main {
 
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef);
-        body.setUserData(new IceEntity(listIndex));
+        IceEntity entity = new IceEntity();
+        entity.temperature = temperature;
+        body.setUserData(entity);
 
         return body;
     }
 
-    private static Body createObsidian(float x, float y, int listIndex){
+    private static Body createObsidian(float x, float y, float temperature){
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x, y);
         bodyDef.type = BodyType.STATIC;
@@ -398,7 +438,9 @@ public class Main {
 
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef);
-        body.setUserData(new ObsidianEntity(listIndex));
+        ObsidianEntity entity = new ObsidianEntity();
+        entity.temperature = temperature;
+        body.setUserData(entity);
 
         return body;
     }

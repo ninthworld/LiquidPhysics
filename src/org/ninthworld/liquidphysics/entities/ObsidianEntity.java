@@ -5,7 +5,9 @@ package org.ninthworld.liquidphysics.entities;
  */
 public class ObsidianEntity extends SolidEntity {
 
-    public ObsidianEntity(int listIndex){
-        super(listIndex);
+    public static float toLavaTemp = 2f;
+
+    public ObsidianEntity(){
+        super(1f);
     }
 }
