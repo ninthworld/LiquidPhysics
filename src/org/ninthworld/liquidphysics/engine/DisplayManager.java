@@ -16,8 +16,8 @@ public class DisplayManager {
 
     private static final GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-    private static final int        WIDTH   = 1280; //(int)(gd.getDisplayMode().getWidth() * 0.8);
-    private static final int        HEIGHT  = 640; //(int)(gd.getDisplayMode().getHeight() * 0.8);
+    private static final int        WIDTH   = 720; //(int)(gd.getDisplayMode().getWidth() * 0.8);
+    private static final int        HEIGHT  = 480; //(int)(gd.getDisplayMode().getHeight() * 0.8);
     private static final int        FPS_CAP = 60;
     private static final boolean    VSYNC   = true;
     private static final String     TITLE   = "LiquidPhysics";

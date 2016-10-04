@@ -9,8 +9,7 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
-import org.ninthworld.liquidphysics.entities.CameraEntity;
-import org.ninthworld.liquidphysics.entities.ModelEntity;
+import org.ninthworld.liquidphysics.entities.*;
 import org.ninthworld.liquidphysics.helper.MatrixHelper;
 import org.ninthworld.liquidphysics.model.Loader;
 import org.ninthworld.liquidphysics.model.RawModel;
@@ -44,7 +43,7 @@ public class LiquidRenderer {
         shader.cleanUp();
     }
 
-    public void render(RawModel model, Vec2[] particles, int particleCount, ParticleColor[] particleColors, ParticleColor particleColor, CameraEntity camera){
+    public void render(RawModel model, Vec2[] particles, int particleCount, Object[] particleData, int particleType, CameraEntity camera){
         GL11.glClearColor(0, 0, 0, 1);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
@@ -56,7 +55,7 @@ public class LiquidRenderer {
         shader.start();
         shader.loadViewMatrix(camera);
         shader.connectTextureUnits();
-        renderEntities(model, particles, particleCount, particleColors, particleColor, shader);
+        renderEntities(model, particles, particleCount, particleData, particleType, shader);
         shader.stop();
     }
 
@@ -76,11 +75,13 @@ public class LiquidRenderer {
         shader.stop();
     }
 
-    private void renderEntities(RawModel model, Vec2[] particles, int particleCount, ParticleColor[] particleColors, ParticleColor particleColor, LiquidShader shader){
+    private void renderEntities(RawModel model, Vec2[] particles, int particleCount, Object[] particleData, int particleType, LiquidShader shader){
         prepareRawModel(model);
         if(particles != null){
             for(int i = 0; i < particleCount; i++){
-                if(particleColors[i].r == particleColor.r && particleColors[i].g == particleColor.g && particleColors[i].b == particleColor.b) {
+                if((particleType == LiquidEntity.WATER && particleData[i] instanceof WaterEntity) ||
+                        (particleType == LiquidEntity.LAVA && particleData[i] instanceof LavaEntity) ||
+                        (particleType == LiquidEntity.STEAM && particleData[i] instanceof SteamEntity)) {
                     Vec2 particle = particles[i];
                     prepareEntity(particle, shader);
                     GL11.glDrawElements(GL11.GL_TRIANGLE_FAN, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);

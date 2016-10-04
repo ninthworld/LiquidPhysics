@@ -101,19 +101,19 @@ void main() {
     vec4 obsidianColor = texture(textures[8], textureCoords).rgba;
     vec4 obsidianMask = texture(textures[9], textureCoords).rgba;
 
-    vec4 shipColor = texture(textures[10], textureCoords).rgba;
-    vec4 shipMask = texture(textures[11], textureCoords).rgba;
+    vec4 iceColor = texture(textures[10], textureCoords).rgba;
+    vec4 iceMask = texture(textures[11], textureCoords).rgba;
 
     boxColor = vec4(107, 169, 188, 255)/255.0;
-    float radius = 10;
-    float avg = 0;
-    for(int i=0; i<10; i++){
-        avg += texture(textures[1], textureCoords + vec2(cos(6.28*i/10.0)*radius, sin(6.28*i/10.0)*radius)/screenSize).r;
-    }
-    avg /= 10;
-    if(avg > 0.7){
-        boxColor = vec4(88, 147, 166, 255)/255.0;
-    }
+//    float radius = 10;
+//    float avg = 0;
+//    for(int i=0; i<10; i++){
+//        avg += texture(textures[1], textureCoords + vec2(cos(6.28*i/10.0)*radius, sin(6.28*i/10.0)*radius)/screenSize).r;
+//    }
+//    avg /= 10;
+//    if(avg > 0.7){
+//        boxColor = vec4(88, 147, 166, 255)/255.0;
+//    }
 
     waterColor *= vec4(94/255.0, 152/255.0, 181/255.0, 1); //vec4(0.1, 0.2, 0.8, 1);
     waterColor = applyBorderColor(waterColor, textures[3], vec4(118/255.0, 203/255.0, 188/255.0, 1), 2, 0.1, true); //vec4(1, 1, 1, 0.3), 2, 0.1, true);
@@ -134,6 +134,10 @@ void main() {
     obsidianColor = applyBorderColor(obsidianColor, textures[9], vec4(1, 1, 1, 0.05), 1, 0.1, true);
     obsidianMask = applyBorderColor(obsidianMask, textures[9], vec4(1, 1, 1, 1), 1, 0.1, true);
 
+    iceColor *= vec4(0.2, 0.5, 0.9, 1);
+    iceColor = applyBorderColor(iceColor, textures[9], vec4(1, 1, 1, 0.2), 1, 0.1, true);
+    iceMask = applyBorderColor(iceMask, textures[9], vec4(1, 1, 1, 1), 1, 0.1, true);
+
     // Background colors
     // 41, 69, 80
     // 41, 67, 77
@@ -141,22 +145,22 @@ void main() {
     // 33, 54, 62
 
     vec4 add = vec4(0);
-    if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.8){
-        add = vec4(41, 69, 80, 255)/255.0;
-    }else if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.6){
-        add = vec4(41, 67, 77, 255)/255.0;
-    }else if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.4){
-        add = vec4(40, 60, 70, 255)/255.0;
-    }else{
+//    if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.8){
+//        add = vec4(41, 69, 80, 255)/255.0;
+//    }else if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.6){
+//        add = vec4(41, 67, 77, 255)/255.0;
+//    }else if(textureCoords.y > sin(textureCoords.x * 8.0)*0.1 + 0.4){
+//        add = vec4(40, 60, 70, 255)/255.0;
+//    }else{
          add = vec4(33, 54, 62, 255)/255.0;
-    }
+//    }
 
     add = mix(add, boxColor, boxMask.x);
     add = mix(add, waterColor, waterMask.x * 0.8);
     add = mix(add, lavaColor, lavaMask.x * 0.9);
     add = mix(add, steamColor, steamMask.x * 0.2);
     add = mix(add, obsidianColor, obsidianMask.x);
-    add = mix(add, shipColor, shipMask.x);
+    add = mix(add, iceColor, iceMask.x);
 
     out_Color = add;
 }

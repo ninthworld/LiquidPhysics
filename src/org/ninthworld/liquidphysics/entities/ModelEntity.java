@@ -1,5 +1,6 @@
 package org.ninthworld.liquidphysics.entities;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.ninthworld.liquidphysics.model.RawModel;
 
@@ -10,11 +11,13 @@ public class ModelEntity extends Entity {
 
     private RawModel rawModel;
     private Body body;
+    public Vec2[] verts;
 
     public ModelEntity(){
         super();
         this.rawModel = null;
         this.body = null;
+        this.verts = null;
     }
 
     public RawModel getRawModel() {
