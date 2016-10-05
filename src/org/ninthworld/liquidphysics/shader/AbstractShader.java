@@ -78,6 +78,14 @@ public abstract class AbstractShader {
         GL20.glUniform2f(location,vector.x,vector.y);
     }
 
+    public void loadVector3f(int location, Vector3f vector){
+        GL20.glUniform3f(location, vector.x, vector.y, vector.z);
+    }
+
+    public void loadVector4f(int location, Vector4f vector){
+        GL20.glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+    }
+
     protected void loadBoolean(int location, boolean value){
         float toLoad = 0;
         if(value){
@@ -115,5 +123,4 @@ public abstract class AbstractShader {
         }
         return shaderID;
     }
-
 }

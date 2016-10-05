@@ -29,7 +29,7 @@ public class ImageRenderer {
 	}
 
 	public int getOutputTexture() {
-		return fbo.getColorTexture();
+		return fbo.getTexture();
 	}
 
 	public void cleanUp() {

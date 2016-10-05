@@ -80,7 +80,7 @@ public class Fbo {
 	/**
 	 * @return The ID of the texture containing the colour buffer of the FBO.
 	 */
-	public int getColorTexture() {
+	public int getTexture() {
 		return colorTexture;
 	}
 

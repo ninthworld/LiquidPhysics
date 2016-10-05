@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 import org.ninthworld.liquidphysics.entities.*;
 import org.ninthworld.liquidphysics.fbo.Fbo;
 import org.ninthworld.liquidphysics.fbo.PostProcessing;
@@ -38,8 +39,8 @@ public class Main {
     private static Map<String, Fbo> fbos;
 
     public static final float PARTICLE_RADIUS = 2;
-    private static final int WORLD_WIDTH = 720;
-    private static final int WORLD_HEIGHT = 480;
+    private static int WORLD_WIDTH;
+    private static int WORLD_HEIGHT;
 
     private static World world;
 
@@ -56,6 +57,9 @@ public class Main {
     private static void initialize(){
         loader = new Loader();
         DisplayManager.createDisplay();
+        WORLD_WIDTH = Display.getWidth();
+        WORLD_HEIGHT = Display.getHeight();
+
         Matrix4f projectionMatrix = MatrixHelper.createProjectionMatrix();
         liquidRenderer = new LiquidRenderer(loader, projectionMatrix);
         geometryRenderer = new GeometryRenderer(projectionMatrix);
@@ -68,16 +72,31 @@ public class Main {
         fbos = new HashMap<>();
         fbos.put("geometryColor", new Fbo(Display.getWidth(), Display.getHeight()));
         fbos.put("geometryMask", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("waterParticles", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("waterParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("lavaParticles", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("lavaParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
+
+        fbos.put("waterColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("waterColor2", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("waterMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("waterMask2", new Fbo(Display.getWidth(), Display.getHeight()));
+
+        fbos.put("lavaColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("lavaColor2", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("lavaMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("lavaMask2", new Fbo(Display.getWidth(), Display.getHeight()));
+
         fbos.put("obsidianColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("obsidianColor2", new Fbo(Display.getWidth(), Display.getHeight()));
         fbos.put("obsidianMask", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("steamParticles", new Fbo(Display.getWidth(), Display.getHeight()));
-        fbos.put("steamParticlesMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("obsidianMask2", new Fbo(Display.getWidth(), Display.getHeight()));
+
+        fbos.put("steamColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("steamColor2", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("steamMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("steamMask2", new Fbo(Display.getWidth(), Display.getHeight()));
+
         fbos.put("iceColor", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("iceColor2", new Fbo(Display.getWidth(), Display.getHeight()));
         fbos.put("iceMask", new Fbo(Display.getWidth(), Display.getHeight()));
+        fbos.put("iceMask2", new Fbo(Display.getWidth(), Display.getHeight()));
 
         world = new World(new Vec2(0, 9.8f * 10f));
 
@@ -299,6 +318,8 @@ public class Main {
                 iceRefresh = false;
             }
 
+
+            // Geometry
             fbos.get("geometryMask").bindFrameBuffer();
             geometryRenderer.render(polygons, camera, true);
             fbos.get("geometryMask").unbindFrameBuffer();
@@ -307,63 +328,143 @@ public class Main {
             geometryRenderer.render(polygons, camera, false);
             fbos.get("geometryColor").unbindFrameBuffer();
 
-            fbos.get("waterParticles").bindFrameBuffer();
+            fbos.get("geometryColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("geometryColor").getTexture(), new Vector4f(0.42f, 0.66f, 0.74f, 1f));
+            fbos.get("geometryColor").unbindFrameBuffer();
+
+            // Water
+            fbos.get("waterColor").bindFrameBuffer();
             liquidRenderer.render(liquidModel, particleSystem.getParticlePositionBuffer(), particleSystem.getParticleCount(), particleSystem.getParticleUserDataBuffer(), LiquidEntity.WATER, camera);
-            fbos.get("waterParticles").unbindFrameBuffer();
+            fbos.get("waterColor").unbindFrameBuffer();
 
-            fbos.get("waterParticlesMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("waterParticles").getColorTexture());
-            fbos.get("waterParticlesMask").unbindFrameBuffer();
+            fbos.get("waterMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("waterColor").getTexture());
+            fbos.get("waterMask").unbindFrameBuffer();
 
-            fbos.get("lavaParticles").bindFrameBuffer();
+            fbos.get("waterColor2").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("waterMask").getTexture(), new Vector4f(0.17f, 0.52f, 0.75f, 1f));
+            fbos.get("waterColor2").unbindFrameBuffer();
+
+            fbos.get("waterColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("waterColor2").getTexture(), fbos.get("waterMask").getTexture(), new Vector4f(0.46f, 0.80f, 0.74f, 1f), 2, true);
+            fbos.get("waterColor").unbindFrameBuffer();
+
+            fbos.get("waterMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("waterMask").getTexture(), fbos.get("waterMask").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
+            fbos.get("waterMask2").unbindFrameBuffer();
+
+            fbos.get("waterMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("waterMask2").getTexture(), new Vector4f(1f, 1f, 1f, 0.8f));
+            fbos.get("waterMask").unbindFrameBuffer();
+
+            // Lava
+            fbos.get("lavaColor").bindFrameBuffer();
             liquidRenderer.render(liquidModel, particleSystem.getParticlePositionBuffer(), particleSystem.getParticleCount(), particleSystem.getParticleUserDataBuffer(), LiquidEntity.LAVA, camera);
-            fbos.get("lavaParticles").unbindFrameBuffer();
+            fbos.get("lavaColor").unbindFrameBuffer();
 
-            fbos.get("lavaParticlesMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("lavaParticles").getColorTexture());
-            fbos.get("lavaParticlesMask").unbindFrameBuffer();
+            fbos.get("lavaMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("lavaColor").getTexture());
+            fbos.get("lavaMask2").unbindFrameBuffer();
 
-            fbos.get("steamParticles").bindFrameBuffer();
+            fbos.get("lavaColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("lavaMask2").getTexture(), new Vector4f(0.95f, 0.64f, 0.34f, 1f));
+            fbos.get("lavaColor").unbindFrameBuffer();
+
+            fbos.get("lavaColor2").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("lavaColor").getTexture(), fbos.get("lavaMask2").getTexture(), new Vector4f(0.96f, 0.84f, 0.54f, 1f), 2, false);
+            fbos.get("lavaColor2").unbindFrameBuffer();
+
+            fbos.get("lavaMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("lavaMask2").getTexture(), fbos.get("lavaMask2").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
+            fbos.get("lavaMask").unbindFrameBuffer();
+
+            fbos.get("lavaColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingOuterglow(fbos.get("lavaColor2").getTexture(), fbos.get("lavaMask").getTexture(), new Vector4f(0.96f, 0.84f, 0.54f, 1), 8, false);
+            fbos.get("lavaColor").unbindFrameBuffer();
+
+            fbos.get("lavaMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingOuterglow(fbos.get("lavaMask").getTexture(), fbos.get("lavaMask").getTexture(), new Vector4f(1, 1, 1, 1), 8, true);
+            fbos.get("lavaMask2").unbindFrameBuffer();
+
+            fbos.get("lavaMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("lavaMask2").getTexture(), new Vector4f(1f, 1f, 1f, 0.8f));
+            fbos.get("lavaMask").unbindFrameBuffer();
+
+            // Steam
+            fbos.get("steamColor").bindFrameBuffer();
             liquidRenderer.render(liquidModel, invParticleSystem.getParticlePositionBuffer(), invParticleSystem.getParticleCount(), invParticleSystem.getParticleUserDataBuffer(), LiquidEntity.STEAM, camera);
-            fbos.get("steamParticles").unbindFrameBuffer();
+            fbos.get("steamColor").unbindFrameBuffer();
 
-            fbos.get("steamParticlesMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("steamParticles").getColorTexture());
-            fbos.get("steamParticlesMask").unbindFrameBuffer();
+            fbos.get("steamMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("steamColor").getTexture());
+            fbos.get("steamMask").unbindFrameBuffer();
 
+            fbos.get("steamColor2").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("steamMask").getTexture(), new Vector4f(0.8f, 0.8f, 0.8f, 1f));
+            fbos.get("steamColor2").unbindFrameBuffer();
+
+            fbos.get("steamColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("steamColor2").getTexture(), fbos.get("steamMask").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
+            fbos.get("steamColor").unbindFrameBuffer();
+
+            fbos.get("steamMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("steamMask").getTexture(), fbos.get("steamMask").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
+            fbos.get("steamMask2").unbindFrameBuffer();
+
+            fbos.get("steamMask").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("steamMask2").getTexture(), new Vector4f(1f, 1f, 1f, 0.2f));
+            fbos.get("steamMask").unbindFrameBuffer();
+
+            // Obsidian
             fbos.get("obsidianColor").bindFrameBuffer();
             liquidRenderer.render(liquidModel, obsidians, camera);
             fbos.get("obsidianColor").unbindFrameBuffer();
 
+            fbos.get("obsidianMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("obsidianColor").getTexture());
+            fbos.get("obsidianMask2").unbindFrameBuffer();
+
+            fbos.get("obsidianColor2").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("obsidianMask2").getTexture(), new Vector4f(0.2f, 0.2f, 0.2f, 1f));
+            fbos.get("obsidianColor2").unbindFrameBuffer();
+
+            fbos.get("obsidianColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("obsidianColor2").getTexture(), fbos.get("obsidianMask2").getTexture(), new Vector4f(0.4f, 0.4f, 0.4f, 1f), 2, true);
+            fbos.get("obsidianColor").unbindFrameBuffer();
+
             fbos.get("obsidianMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("obsidianColor").getColorTexture());
+            PostProcessing.doPostProcessingOutline(fbos.get("obsidianMask2").getTexture(), fbos.get("obsidianMask2").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
             fbos.get("obsidianMask").unbindFrameBuffer();
 
+            // Ice
             fbos.get("iceColor").bindFrameBuffer();
             liquidRenderer.render(liquidModel, ices, camera);
             fbos.get("iceColor").unbindFrameBuffer();
 
+            fbos.get("iceMask2").bindFrameBuffer();
+            PostProcessing.doPostProcessingConstrain(fbos.get("iceColor").getTexture());
+            fbos.get("iceMask2").unbindFrameBuffer();
+
+            fbos.get("iceColor2").bindFrameBuffer();
+            PostProcessing.doPostProcessingMultiply(fbos.get("iceMask2").getTexture(), new Vector4f(0.62f, 0.84f, 0.91f, 1f));
+            fbos.get("iceColor2").unbindFrameBuffer();
+
+            fbos.get("iceColor").bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(fbos.get("iceColor2").getTexture(), fbos.get("iceMask2").getTexture(), new Vector4f(0.58f, 0.85f, 0.95f, 1f), 2, true);
+            fbos.get("iceColor").unbindFrameBuffer();
+
             fbos.get("iceMask").bindFrameBuffer();
-            PostProcessing.doPostProcessingConstrain(fbos.get("iceColor").getColorTexture());
+            PostProcessing.doPostProcessingOutline(fbos.get("iceMask2").getTexture(), fbos.get("iceMask2").getTexture(), new Vector4f(1f, 1f, 1f, 1f), 2, false);
             fbos.get("iceMask").unbindFrameBuffer();
 
-            PostProcessing.doPostProcessingMain(
-                    new int[]{
-                            fbos.get("geometryColor").getColorTexture(),
-                            fbos.get("waterParticlesMask").getColorTexture(),
-                            fbos.get("lavaParticlesMask").getColorTexture(),
-                            fbos.get("steamParticlesMask").getColorTexture(),
-                            fbos.get("obsidianMask").getColorTexture(),
-                            fbos.get("iceMask").getColorTexture()
-                    }, new int[]{
-                            fbos.get("geometryMask").getColorTexture(),
-                            fbos.get("waterParticlesMask").getColorTexture(),
-                            fbos.get("lavaParticlesMask").getColorTexture(),
-                            fbos.get("steamParticlesMask").getColorTexture(),
-                            fbos.get("obsidianMask").getColorTexture(),
-                            fbos.get("iceMask").getColorTexture()
-                    }
-            );
+            PostProcessing.doPostProcessingCombine(new int[][]{
+                    { fbos.get("geometryColor").getTexture(), fbos.get("geometryMask").getTexture() },
+                    { fbos.get("waterColor").getTexture(), fbos.get("waterMask").getTexture() },
+                    { fbos.get("lavaColor").getTexture(), fbos.get("lavaMask").getTexture() },
+                    { fbos.get("steamColor").getTexture(), fbos.get("steamMask").getTexture() },
+                    { fbos.get("obsidianColor").getTexture(), fbos.get("obsidianMask").getTexture() },
+                    { fbos.get("iceColor").getTexture(), fbos.get("iceMask").getTexture() }
+            });
 
             DisplayManager.showFPS();
             DisplayManager.showString(
