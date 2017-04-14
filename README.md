@@ -9,6 +9,7 @@ Features -
 * Particle state determines solid/liquid
 * Water - Solid (Ice), Liquid (Water), Smoke (Steam)
 * Lava - Solid (Obsidian), Liquid (Lava)
+* Colliding particles average their temperatures
 
 Controls -
 * Left Click - Water
